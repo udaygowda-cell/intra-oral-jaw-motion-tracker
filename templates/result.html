@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - Jaw Motion Tracker{% endblock %}
+
+{% block content %}
+<section class="results-hero">
+    <div class="container">
+        <h2>Analysis Results</h2>
+        <p>Your jaw movement data has been successfully analyzed</p>
+    </div>
+</section>
+
+<section class="results-section">
+    <div class="container">
+        <div class="results-summary">
+            <div class="prediction-card">
+                <h3>Predicted Activity</h3>
+                <div class="prediction-result {{ label.lower() }}">
+                    <h2>{{ label }}</h2>
+                    <p>Confidence: {{ "%.2f"|format(confidence*100) }}%</p>
+                </div>
+            </div>
+            
+            <div class="visualization-card">
+                <h3>3D Motion Visualization</h3>
+                <div class="plots-container">
+                    <div class="plot-item">
+                        <h4>Accelerometer Data</h4>
+                        <img src="/plots/{{ acc_plot }}" alt="Accelerometer 3D Plot">
+                    </div>
+                    
+                    <div class="plot-item">
+                        <h4>Magnetometer Data</h4>
+                        <img src="/plots/{{ mag_plot }}" alt="Magnetometer 3D Plot">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i> Analyze Another File
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="explanation">
+    <div class="container">
+        <h2>Understanding Your Results</h2>
+        <div class="explanation-content">
+            {% if label == "NORMAL" %}
+            <p>Your jaw movement patterns appear to be within normal ranges. This typically includes regular jaw movements during talking and eating.</p>
+            {% elif label == "CHEWING" %}
+            <p>Your jaw movement patterns indicate chewing activity. This involves rhythmic jaw movements during food consumption.</p>
+            {% elif label == "GRINDING" %}
+            <p>Your jaw movement patterns suggest grinding activity, which may indicate bruxism. If this occurs frequently during sleep, consider consulting with a healthcare professional.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

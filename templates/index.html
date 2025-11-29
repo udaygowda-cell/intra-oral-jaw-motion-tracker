@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h2>Track Your Jaw Movement Patterns</h2>
+            <p>Analyze and understand your jaw activity with our advanced motion tracking technology</p>
+            <div class="animation-container">
+                <div class="jaw-animation">
+                    <div class="upper-jaw"></div>
+                    <div class="lower-jaw"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="upload-section">
+    <div class="container">
+        <div class="upload-box">
+            <h3>Upload Your Data</h3>
+            <p>Select a CSV or Excel file containing your jaw movement data</p>
+            
+            <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="file-input-wrapper">
+                    <input type="file" name="file" id="file-input" accept=".csv,.xlsx,.xls" required>
+                    <label for="file-input" class="file-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Choose File</span>
+                    </label>
+                    <span id="file-name">No file chosen</span>
+                </div>
+                
+                <button type="submit" class="btn-analyze">
+                    <span class="btn-text">Analyze Jaw Motion</span>
+                    <div class="btn-loader"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>How It Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-upload"></i>
+                </div>
+                <h3>Upload Data</h3>
+                <p>Upload your jaw movement data collected from IMU sensors</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Analysis</h3>
+                <p>Our CNN model analyzes patterns in your jaw movements</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Get Insights</h3>
+                <p>Receive classification of your jaw activity patterns</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="activity-types">
+    <div class="container">
+        <h2>Jaw Activity Types</h2>
+        <div class="activity-grid">
+            <div class="activity-card">
+                <h3>Normal</h3>
+                <p>Regular jaw movements during talking and eating</p>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Chewing</h3>
+                <p>Rhythmic jaw movements during food consumption</p>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Grinding</h3>
+                <p>Bruxism or teeth grinding activity detection</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
